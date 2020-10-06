@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:explore_flutter/core/enum/animated_foo.dart';
 
 class AnimatedFooExample extends StatefulWidget {
   @override
@@ -7,11 +8,9 @@ class AnimatedFooExample extends StatefulWidget {
 
 class _AnimatedFooExampleState extends State<AnimatedFooExample>
     with SingleTickerProviderStateMixin {
+  AnimatedFoo _dropdownValue = AnimatedFoo.align;
   AlignmentGeometry _alignmentGeometry = Alignment.topRight;
   bool _isSelected = false;
-  double _fontSize = 40;
-  Color _fontColor = Colors.black;
-  FontWeight _fontWeight = FontWeight.bold;
   Key _key = UniqueKey();
 
   @override
@@ -25,69 +24,94 @@ class _AnimatedFooExampleState extends State<AnimatedFooExample>
         appBar: AppBar(
           title: Text('AnimatedFoo Example'),
         ),
-        body: Center(
-            child: Container(
-          height: 300,
-          width: 300,
-          color: Colors.blueAccent,
+        body: Padding(
+          padding: EdgeInsets.all(16),
           child: Column(
             children: [
+              Container(
+                  width: double.infinity,
+                  child: DropdownButton<AnimatedFoo>(
+                    isExpanded: true,
+                    value: _dropdownValue,
+                    onChanged: (value) {
+                      print('selected ${value.toString()}');
+                      setState(() {
+                        _dropdownValue = value;
+                      });
+                    },
+                    items: AnimatedFoo.values
+                        .map((AnimatedFoo value) =>
+                            DropdownMenuItem<AnimatedFoo>(
+                              value: value,
+                              child: Text(value.toString()),
+                            ))
+                        .toList(),
+                  )),
               Expanded(
-                  child: Container(
-                      color: Colors.lightBlue,
-                      child:
-                          // _buildAnimatedAlign(),
-                          // _buildAnimatedContainer(),
-                          // _buildAnimatedText()),
-                          // _buildAnimatedOpacity(),
-                          // _buildAnimatedPadding(),
-                          // _buildAnimatedPhysicalModel(),
-                          // _buildAnimatedPositioned(),
-                          // _buildAnimatedPositionedDirectional(),
-                          // _buildAnimatedTheme(),
-                          // _buildAnimatedCrossFade(),
-                          // _buildAnimatedSize(),
-                          _buildAnimatedSwitcher())),
-              FlatButton(
-                  onPressed: () {
-                    // _changeAlignment();
-                    // _changeSelected();
-                    // _changeText();
-                    _changeKey();
-                  },
-                  child: Text('Animate'))
+                child: Center(
+                    child: Container(
+                  height: 300,
+                  width: 300,
+                  color: Colors.blueAccent,
+                  child: Column(
+                    children: [
+                      Expanded(
+                          child: Container(
+                              color: Colors.lightBlue,
+                              child: _buildAnimationOption())),
+                      FlatButton(
+                          onPressed: () {
+                            _changeState();
+                          },
+                          child: Text('Animate'))
+                    ],
+                  ),
+                )),
+              ),
             ],
           ),
-        )));
+        ));
   }
 
-  void _changeKey() {
+  Widget _buildAnimationOption() {
+    switch (_dropdownValue) {
+      case AnimatedFoo.align:
+        return _buildAnimatedAlign();
+      case AnimatedFoo.container:
+        return _buildAnimatedContainer();
+      case AnimatedFoo.text:
+        return _buildAnimatedText();
+      case AnimatedFoo.opacity:
+        return _buildAnimatedOpacity();
+      case AnimatedFoo.padding:
+        return _buildAnimatedPadding();
+      case AnimatedFoo.physicalModel:
+        return _buildAnimatedPhysicalModel();
+      case AnimatedFoo.positioned:
+        return _buildAnimatedPositioned();
+      case AnimatedFoo.positionedDirectional:
+        return _buildAnimatedPositionedDirectional();
+      case AnimatedFoo.theme:
+        return _buildAnimatedTheme();
+      case AnimatedFoo.crossFade:
+        return _buildAnimatedCrossFade();
+      case AnimatedFoo.size:
+        return _buildAnimatedSize();
+      case AnimatedFoo.switcher:
+        return _buildAnimatedSwitcher();
+      default:
+        return _buildAnimatedAlign();
+    }
+  }
+
+  void _changeState() {
     setState(() {
       _key = UniqueKey();
-    });
-  }
-
-  void _changeAlignment() {
-    setState(() {
       _alignmentGeometry = _alignmentGeometry == Alignment.topRight
           ? Alignment.bottomLeft
           : Alignment.topRight;
-    });
-  }
-
-  void _changeSelected() {
-    setState(() {
       _isSelected = !_isSelected;
     });
-  }
-
-  void _changeText() {
-    setState(() {
-      _fontSize = _isSelected ? 40 : 20;
-      _fontWeight = _isSelected ? FontWeight.bold : FontWeight.normal;
-      _fontColor = _isSelected ? Colors.black : Colors.white;
-    });
-    _changeSelected();
   }
 
   Widget _buildAnimatedSwitcher() {
@@ -283,9 +307,9 @@ class _AnimatedFooExampleState extends State<AnimatedFooExample>
         curve: Curves.bounceInOut,
         duration: Duration(seconds: 3),
         style: TextStyle(
-          fontSize: _fontSize,
-          color: _fontColor,
-          fontWeight: _fontWeight,
+          fontSize: _isSelected ? 40 : 20,
+          fontWeight: _isSelected ? FontWeight.bold : FontWeight.normal,
+          color: _isSelected ? Colors.black : Colors.white,
         ),
         child: Text('Flutter'),
       ),
