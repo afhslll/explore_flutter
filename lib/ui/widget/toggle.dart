@@ -71,8 +71,8 @@ class _ToggleComponentState extends State<ToggleComponent> {
                     boxShadow: [
                       BoxShadow(
                         color: ThemeColor.shadow.withOpacity(0.2),
-                        blurRadius: 14,
-                        offset: Offset(0, 4),
+                        blurRadius: 5,
+                        offset: Offset(0, 2),
                         spreadRadius: 0,
                       )
                     ],
@@ -84,8 +84,8 @@ class _ToggleComponentState extends State<ToggleComponent> {
                       duration: Duration(milliseconds: 400),
                       width: _isActive
                           ? (ConstantMeasurements.toggleCircleBorder * 2)
-                          : ConstantMeasurements.toggleCircleHeight,
-                      height: ConstantMeasurements.toggleCircleHeight,
+                          : ConstantMeasurements.toggleBarHeight,
+                      height: ConstantMeasurements.toggleBarHeight,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: _isActive
@@ -94,7 +94,7 @@ class _ToggleComponentState extends State<ToggleComponent> {
                           width: ConstantMeasurements.toggleCircleBorder,
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(
-                            ConstantMeasurements.toggleCircleHeight / 2)),
+                            ConstantMeasurements.toggleBarHeight / 2)),
                       ),
                     ),
                   )),

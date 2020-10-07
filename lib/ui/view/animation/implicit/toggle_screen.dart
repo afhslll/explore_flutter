@@ -1,3 +1,4 @@
+import 'package:explore_flutter/ui/shared/style/theme_color.dart';
 import 'package:explore_flutter/ui/widget/toggle.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,26 @@ class ToggleScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Toggle Component'),
       ),
-      body: Center(
-        child: ToggleComponent(
-          onToggled: (value) {
-            print('onToggled $value');
-          },
+      backgroundColor: ThemeColor.white,
+      body: ListView.separated(
+        padding: EdgeInsets.all(16),
+        itemCount: 3,
+        separatorBuilder: (context, index) => Divider(
+          height: 20,
+        ),
+        itemBuilder: (context, index) => Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Allow notifications',
+            ),
+            ToggleComponent(
+              onToggled: (value) {
+                print('onToggled $value');
+              },
+            ),
+          ],
         ),
       ),
     );
