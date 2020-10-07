@@ -15,11 +15,21 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(ConstantStrings.appName),
       ),
-      body: Center(
-        child: RaisedButton(
-            onPressed: () => _navigationService
-                .navigateTo(NavigationRouter.animatedFooRoute),
-            child: Text('Animation')),
+      body: Align(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RaisedButton(
+                onPressed: () => _navigationService
+                    .navigateTo(NavigationRouter.animatedFooRoute),
+                child: Text('Animation')),
+            RaisedButton(
+                onPressed: () =>
+                    _navigationService.navigateTo(NavigationRouter.toggleRoute),
+                child: Text('Toggle')),
+          ],
+        ),
       ),
     );
   }

@@ -1,10 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:explore_flutter/ui/view/animation/implicit/toggle_screen.dart';
 import 'package:explore_flutter/ui/view/home/home_screen.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/animated_foo_example.dart';
+import 'package:flutter/material.dart';
 
 class NavigationRouter {
   static const String homeRoute = 'homeRoute';
   static const String animatedFooRoute = 'animatedFooRoute';
+  static const String toggleRoute = 'toggleRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -16,6 +18,8 @@ class NavigationRouter {
         return _pageRoute(HomeScreen());
       case animatedFooRoute:
         return _pageRoute(AnimatedFooExample());
+      case toggleRoute:
+        return _pageRoute(ToggleScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
