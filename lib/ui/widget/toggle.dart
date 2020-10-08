@@ -1,4 +1,4 @@
-import 'package:explore_flutter/core/constant/measurement_constant.dart';
+import 'package:explore_flutter/core/constant/measurements_constant.dart';
 import 'package:explore_flutter/ui/shared/style/theme_color.dart';
 import 'package:flutter/material.dart';
 

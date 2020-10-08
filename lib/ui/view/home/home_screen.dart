@@ -23,7 +23,11 @@ class HomeScreen extends StatelessWidget {
             RaisedButton(
                 onPressed: () => _navigationService
                     .navigateTo(NavigationRouter.animatedFooRoute),
-                child: Text('Animation')),
+                child: Text('AnimatedFoo')),
+            RaisedButton(
+                onPressed: () => _navigationService
+                    .navigateTo(NavigationRouter.tweenAnimationRoute),
+                child: Text('Tween Animation')),
             RaisedButton(
                 onPressed: () =>
                     _navigationService.navigateTo(NavigationRouter.toggleRoute),

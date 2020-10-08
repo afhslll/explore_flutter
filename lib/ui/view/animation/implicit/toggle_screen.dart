@@ -21,7 +21,7 @@ class ToggleScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Allow notifications',
+              'Item $index',
             ),
             ToggleComponent(
               onToggled: (value) {
