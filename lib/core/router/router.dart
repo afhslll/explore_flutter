@@ -1,4 +1,5 @@
 import 'package:explore_flutter/ui/view/animation/implicit/toggle_screen.dart';
+import 'package:explore_flutter/ui/view/clip/clip_screen.dart';
 import 'package:explore_flutter/ui/view/home/home_screen.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/animated_foo_example.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/tween_example.dart';
@@ -15,6 +16,7 @@ class NavigationRouter {
   static const String providerExampleRoute = 'providerExampleRoute';
   static const String toAddMinusRoute = 'toAddMinusRoute';
   static const String editValueRoute = 'editValueRoute';
+  static const String clipRoute = 'clipRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -40,6 +42,8 @@ class NavigationRouter {
         return _pageRoute(EditValueScreen(
           arguments: settings.arguments,
         ));
+      case clipRoute:
+        return _pageRoute(ClipScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
