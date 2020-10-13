@@ -40,6 +40,10 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () =>
                     _navigationService.navigateTo(NavigationRouter.clipRoute),
                 child: Text('Clip')),
+            RaisedButton(
+                onPressed: () => _navigationService
+                    .navigateTo(NavigationRouter.painterRoute),
+                child: Text('Painter')),
           ],
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:explore_flutter/ui/view/animation/implicit/tween_example.dart';
 import 'package:explore_flutter/ui/view/provider/example_screen.dart';
 import 'package:explore_flutter/ui/view/provider/to_add_minus_screen.dart';
 import 'package:explore_flutter/ui/view/provider/edit_value_screen.dart';
+import 'package:explore_flutter/ui/view/painter/painter_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationRouter {
@@ -17,6 +18,7 @@ class NavigationRouter {
   static const String toAddMinusRoute = 'toAddMinusRoute';
   static const String editValueRoute = 'editValueRoute';
   static const String clipRoute = 'clipRoute';
+  static const String painterRoute = 'painterRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -44,6 +46,8 @@ class NavigationRouter {
         ));
       case clipRoute:
         return _pageRoute(ClipScreen());
+      case painterRoute:
+        return _pageRoute(PainterScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
