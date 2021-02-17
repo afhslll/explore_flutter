@@ -1,5 +1,6 @@
 import 'package:explore_flutter/core/constant/measurements_constant.dart';
-import 'package:explore_flutter/ui/shared/style/theme_color.dart';
+import 'package:explore_flutter/ui/shared/style/common_style.dart';
+import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:explore_flutter/ui/widget/no_internet_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,12 @@ Widget getAppBar({
         children: [
           NoInternetBar(),
           Container(
-            height: 50,
+            height: 55,
             padding: EdgeInsets.symmetric(
                 horizontal: ConstantMeasurements.screenPadding),
+            decoration: BoxDecoration(
+                color: backgroundColor ?? ThemeColor.white,
+                boxShadow: [CommonStyle.boxShadow2]),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

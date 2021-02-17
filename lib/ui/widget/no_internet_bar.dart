@@ -1,11 +1,16 @@
-import 'package:explore_flutter/ui/shared/style/theme_color.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:explore_flutter/core/viewmodel/home_view_model.dart';
+import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoInternetBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      visible: true,
+      visible: context.select<HomeViewModel, ConnectivityResult>(
+              (HomeViewModel vm) => vm.connectivityStatus) ==
+          ConnectivityResult.none,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 4),
         color: ThemeColor.red,

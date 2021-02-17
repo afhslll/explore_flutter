@@ -1,4 +1,4 @@
-import 'package:explore_flutter/ui/shared/style/theme_color.dart';
+import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:explore_flutter/ui/widget/toggle.dart';
 import 'package:flutter/material.dart';
 
