@@ -5,4 +5,5 @@ class ConstantMeasurements {
   static double toggleWidth = 40;
   static double toggleBarHeight = 11.5;
   static double toggleCircleBorder = 1.5;
+  static double screenPadding = 16.0;
 }
