@@ -1,6 +1,8 @@
+import 'package:explore_flutter/core/constant/measurements_constant.dart';
 import 'package:explore_flutter/core/viewmodel/home_view_model.dart';
 import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:explore_flutter/ui/view/base_view.dart';
+import 'package:explore_flutter/ui/widget/action_popup.dart';
 import 'package:explore_flutter/ui/widget/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:explore_flutter/core/service/locator/locator.dart';
@@ -26,10 +28,9 @@ class HomeScreen extends StatelessWidget {
               title: 'Explore Flutter',
             ),
             Expanded(
-              child: Align(
-                alignment: Alignment.center,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(ConstantMeasurements.screenPadding),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     RaisedButton(
                         onPressed: () => _navigationService
@@ -55,6 +56,20 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.painterRoute),
                         child: Text('Painter')),
+                    RaisedButton(
+                        onPressed: () {
+                          showActionDialog(
+                            context: context,
+                            titleText: 'An action is required!',
+                            descriptionText:
+                                'Malaysia\'s COVID cases has risen. Do you still want to go out?',
+                            positiveText: 'No',
+                            negativeText: 'Yes',
+                            onTapPositive: () => _navigationService.pop(),
+                            onTapNegative: () => _navigationService.pop(),
+                          );
+                        },
+                        child: Text('Action Dialog')),
                   ],
                 ),
               ),
