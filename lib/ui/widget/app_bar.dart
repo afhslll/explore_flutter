@@ -10,7 +10,9 @@ Widget getAppBar({
   String title,
 }) {
   return Container(
-    color: backgroundColor ?? ThemeColor.white,
+    decoration: BoxDecoration(
+        color: backgroundColor ?? ThemeColor.white,
+        boxShadow: [CommonStyle.boxShadow2]),
     child: SafeArea(
       bottom: false,
       child: Column(
@@ -20,9 +22,6 @@ Widget getAppBar({
             height: 55,
             padding: EdgeInsets.symmetric(
                 horizontal: ConstantMeasurements.screenPadding),
-            decoration: BoxDecoration(
-                color: backgroundColor ?? ThemeColor.white,
-                boxShadow: [CommonStyle.boxShadow2]),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
