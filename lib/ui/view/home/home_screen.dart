@@ -70,6 +70,10 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         child: Text('Action Dialog')),
+                    RaisedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.loadingRoute),
+                        child: Text('Shimmer')),
                   ],
                 ),
               ),

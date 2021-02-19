@@ -7,6 +7,7 @@ import 'package:explore_flutter/ui/view/provider/example_screen.dart';
 import 'package:explore_flutter/ui/view/provider/to_add_minus_screen.dart';
 import 'package:explore_flutter/ui/view/provider/edit_value_screen.dart';
 import 'package:explore_flutter/ui/view/painter/painter_screen.dart';
+import 'package:explore_flutter/ui/view/shimmer/loading_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationRouter {
@@ -19,6 +20,7 @@ class NavigationRouter {
   static const String editValueRoute = 'editValueRoute';
   static const String clipRoute = 'clipRoute';
   static const String painterRoute = 'painterRoute';
+  static const String loadingRoute = 'loadingRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -48,6 +50,8 @@ class NavigationRouter {
         return _pageRoute(ClipScreen());
       case painterRoute:
         return _pageRoute(PainterScreen());
+      case loadingRoute:
+        return _pageRoute(LoadingScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
