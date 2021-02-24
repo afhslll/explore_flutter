@@ -74,6 +74,10 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.loadingRoute),
                         child: Text('Shimmer')),
+                    RaisedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.calendarRoute),
+                        child: Text('Calendar')),
                   ],
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:explore_flutter/ui/view/animation/implicit/toggle_screen.dart';
+import 'package:explore_flutter/ui/view/calendar/calendar_screen.dart';
 import 'package:explore_flutter/ui/view/clip/clip_screen.dart';
 import 'package:explore_flutter/ui/view/home/home_screen.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/animated_foo_example.dart';
@@ -21,6 +22,7 @@ class NavigationRouter {
   static const String clipRoute = 'clipRoute';
   static const String painterRoute = 'painterRoute';
   static const String loadingRoute = 'loadingRoute';
+  static const String calendarRoute = 'calendarRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -52,6 +54,8 @@ class NavigationRouter {
         return _pageRoute(PainterScreen());
       case loadingRoute:
         return _pageRoute(LoadingScreen());
+      case calendarRoute:
+        return _pageRoute(CalendarScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
