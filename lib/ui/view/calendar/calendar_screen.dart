@@ -1,3 +1,5 @@
+import 'package:explore_flutter/core/constant/measurements_constant.dart';
+import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -16,6 +18,7 @@ class _CalendarScreenState extends State<CalendarScreen>
   List _selectedEvents;
   AnimationController _animationController;
   CalendarController _calendarController;
+  bool _showCalendar = true;
 
   @override
   void initState() {
@@ -114,18 +117,64 @@ class _CalendarScreenState extends State<CalendarScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Calendar Demo'),
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            _buildeader(),
+            _buildTableCalendarWithBuilders(),
+            Expanded(child: _buildEventList()),
+          ],
+        ),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          // Switch out 2 lines below to play with TableCalendar's settings
-          //-----------------------
-          // _buildTableCalendar(),
-          _buildTableCalendarWithBuilders(),
-          const SizedBox(height: 8.0),
-          Expanded(child: _buildEventList()),
+    );
+  }
+
+  Widget _buildeader() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 8, 16, _showCalendar ? 0 : 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text('My Task',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    )),
+                Visibility(
+                  visible: !_showCalendar,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 6.0),
+                    child: Text('February 10, 2021'),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Visibility(
+            visible: !_showCalendar,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  _showCalendar = true;
+                });
+              },
+              child: Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                      ConstantMeasurements.smallBorderRadius),
+                  color: ThemeColor.lightgrey,
+                ),
+                child: Icon(Icons.event, color: ThemeColor.black),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -159,94 +208,119 @@ class _CalendarScreenState extends State<CalendarScreen>
 
   // More advanced TableCalendar configuration (using Builders & Styles)
   Widget _buildTableCalendarWithBuilders() {
-    return TableCalendar(
-      locale: 'en_US',
-      calendarController: _calendarController,
-      events: _events,
-      initialCalendarFormat: CalendarFormat.month,
-      formatAnimation: FormatAnimation.slide,
-      startingDayOfWeek: StartingDayOfWeek.sunday,
-      availableGestures: AvailableGestures.all,
-      calendarStyle: CalendarStyle(
-        outsideDaysVisible: true,
-        weekdayStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
-        weekendStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 16),
-        eventDayStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
-        outsideStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
-        outsideWeekendStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 16),
-      ),
-      headerStyle: HeaderStyle(
-        centerHeaderTitle: true,
-        formatButtonVisible: false,
-        titleTextStyle: TextStyle(
-            fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
-      ),
-      builders: CalendarBuilders(
-        dowWeekdayBuilder: (context, value) => _buildDowWeek(value),
-        dowWeekendBuilder: (context, value) => _buildDowWeek(value),
-        selectedDayBuilder: (context, date, _) {
-          return FadeTransition(
-            opacity: Tween(begin: 0.0, end: 1.0).animate(_animationController),
-            child: Container(
-              margin: EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: Colors.blue,
-              ),
-              child: Center(
-                child: Text(
-                  '${date.day}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 16),
-                ),
-              ),
+    return Visibility(
+      visible: _showCalendar,
+      child: Column(
+        children: [
+          TableCalendar(
+            locale: 'en_US',
+            calendarController: _calendarController,
+            events: _events,
+            initialCalendarFormat: CalendarFormat.month,
+            formatAnimation: FormatAnimation.slide,
+            startingDayOfWeek: StartingDayOfWeek.sunday,
+            availableGestures: AvailableGestures.all,
+            calendarStyle: CalendarStyle(
+              outsideDaysVisible: true,
+              weekdayStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 16),
+              weekendStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                  fontSize: 16),
+              eventDayStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 16),
+              outsideStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 16),
+              outsideWeekendStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                  fontSize: 16),
             ),
-          );
-        },
-        todayDayBuilder: (context, date, _) {
-          return Container(
-            margin: EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(width: 1, color: Colors.grey),
+            headerStyle: HeaderStyle(
+              centerHeaderTitle: true,
+              formatButtonVisible: false,
+              titleTextStyle: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 16),
             ),
-            child: Center(
-              child: Text(
-                '${date.day}',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 16),
-              ),
+            builders: CalendarBuilders(
+              dowWeekdayBuilder: (context, value) => _buildDowWeek(value),
+              dowWeekendBuilder: (context, value) => _buildDowWeek(value),
+              selectedDayBuilder: (context, date, _) {
+                return FadeTransition(
+                  opacity:
+                      Tween(begin: 0.0, end: 1.0).animate(_animationController),
+                  child: Container(
+                    margin: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.blue,
+                    ),
+                    child: Center(
+                      child: Text(
+                        '${date.day}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 16),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              todayDayBuilder: (context, date, _) {
+                return Container(
+                  margin: EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    border: Border.all(width: 1, color: Colors.grey),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${date.day}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16),
+                    ),
+                  ),
+                );
+              },
+              markersBuilder: (context, date, events, holidays) {
+                final children = <Widget>[];
+                if (events.isNotEmpty) {
+                  children.add(
+                    Positioned(
+                      bottom: 12,
+                      child: _buildEventsMarker(date, events),
+                    ),
+                  );
+                }
+                return children;
+              },
             ),
-          );
-        },
-        markersBuilder: (context, date, events, holidays) {
-          final children = <Widget>[];
-          if (events.isNotEmpty) {
-            children.add(
-              Positioned(
-                bottom: 12,
-                child: _buildEventsMarker(date, events),
-              ),
-            );
-          }
-          return children;
-        },
+            onDaySelected: (date, events, holidays) {
+              _onDaySelected(date, events, holidays);
+              _animationController.forward(from: 0.0);
+            },
+            onVisibleDaysChanged: _onVisibleDaysChanged,
+            onCalendarCreated: _onCalendarCreated,
+          ),
+          SizedBox(height: 12),
+          Divider(
+            thickness: 1,
+            height: 1,
+          )
+        ],
       ),
-      onDaySelected: (date, events, holidays) {
-        _onDaySelected(date, events, holidays);
-        _animationController.forward(from: 0.0);
-      },
-      onVisibleDaysChanged: _onVisibleDaysChanged,
-      onCalendarCreated: _onCalendarCreated,
     );
   }
 
@@ -275,21 +349,56 @@ class _CalendarScreenState extends State<CalendarScreen>
   }
 
   Widget _buildEventList() {
-    return ListView(
-      children: _selectedEvents
-          .map((event) => Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 0.8),
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                child: ListTile(
-                  title: Text(event.toString()),
-                  onTap: () => print('$event tapped!'),
-                ),
-              ))
-          .toList(),
+    return Column(
+      children: [
+        Visibility(
+          visible: _showCalendar,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('February 10, 2021'),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        _showCalendar = false;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                            ConstantMeasurements.smallBorderRadius),
+                        color: ThemeColor.lightgrey,
+                      ),
+                      child: Icon(Icons.keyboard_arrow_up,
+                          color: ThemeColor.black),
+                    ),
+                  )
+                ]),
+          ),
+        ),
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            children: _selectedEvents
+                .map((event) => Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 0.8, color: ThemeColor.grey),
+                        borderRadius: BorderRadius.circular(
+                            ConstantMeasurements.smallBorderRadius),
+                      ),
+                      margin: const EdgeInsets.only(bottom: 12),
+                      child: ListTile(
+                        title: Text(event.toString()),
+                        onTap: () => print('$event tapped!'),
+                      ),
+                    ))
+                .toList(),
+          ),
+        ),
+      ],
     );
   }
 }
