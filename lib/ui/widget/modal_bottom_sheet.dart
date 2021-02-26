@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 ///   showCloseButton: true,
 ///   items: List.generate(2,
 ///         (index) => ModalBottomSheetItem(
-///           leadingIconData: Icon(Icons.calendar_today),
+///           leadingIconData: Icons.calendar_today,
 ///           leadingIconColor: Colors.black,
 ///           titleText: 'Item $index',
 ///           checkmarkIconColor: Colors.green,
@@ -205,7 +205,7 @@ class _ModalBottomSheetListState extends State<ModalBottomSheetList> {
   }
 }
 
-void showModalBottomSheetSkeleton({
+void showCustomModalBottomSheet({
   @required BuildContext context,
   @required List<ModalBottomSheetItem> items,
   Function onSelect,
