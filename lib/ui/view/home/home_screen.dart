@@ -1,3 +1,4 @@
+import 'package:explore_flutter/core/argument/webview_argument.dart';
 import 'package:explore_flutter/core/constant/measurements_constant.dart';
 import 'package:explore_flutter/core/model/modal_bottom_sheet_item.dart';
 import 'package:explore_flutter/core/viewmodel/home_view_model.dart';
@@ -100,8 +101,10 @@ class HomeScreen extends StatelessWidget {
                       child: Text('Modal Bottom Sheet'),
                     ),
                     RaisedButton(
-                        onPressed: () => _navigationService
-                            .navigateTo(NavigationRouter.webviewRoute),
+                        onPressed: () => _navigationService.navigateTo(
+                            NavigationRouter.webviewRoute,
+                            arguments:
+                                WebviewArgument(url: 'https://www.google.com')),
                         child: Text('Webview')),
                   ],
                 ),

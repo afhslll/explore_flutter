@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:explore_flutter/core/argument/webview_argument.dart';
 import 'package:explore_flutter/core/service/locator/locator.dart';
 import 'package:explore_flutter/core/service/navigator/navigation_service.dart';
 import 'package:explore_flutter/ui/shared/theme_color.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CustomWebview extends StatefulWidget {
-  final String url;
-  const CustomWebview({@required this.url});
+  final WebviewArgument argument;
+  const CustomWebview({@required this.argument});
   @override
   _CustomWebviewState createState() => _CustomWebviewState();
 }
@@ -64,7 +65,7 @@ class _CustomWebviewState extends State<CustomWebview> {
         backgroundColor: ThemeColor.white,
       ),
       body: WebView(
-        initialUrl: widget?.url ?? 'https://flutter.dev',
+        initialUrl: widget?.argument?.url ?? 'https://flutter.dev',
         javascriptMode: JavascriptMode.disabled,
         onWebViewCreated: (WebViewController webViewController) {
           _controller.complete(webViewController);

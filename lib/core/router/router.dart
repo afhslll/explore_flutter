@@ -59,7 +59,9 @@ class NavigationRouter {
       case calendarRoute:
         return _pageRoute(CalendarScreen());
       case webviewRoute:
-        return _pageRoute(CustomWebview());
+        return _pageRoute(CustomWebview(
+          argument: settings.arguments,
+        ));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
