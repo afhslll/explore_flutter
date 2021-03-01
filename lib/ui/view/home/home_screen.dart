@@ -99,6 +99,10 @@ class HomeScreen extends StatelessWidget {
                               .toList()),
                       child: Text('Modal Bottom Sheet'),
                     ),
+                    RaisedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.webviewRoute),
+                        child: Text('Webview')),
                   ],
                 ),
               ),
