@@ -106,6 +106,10 @@ class HomeScreen extends StatelessWidget {
                             arguments:
                                 WebviewArgument(url: 'https://www.google.com')),
                         child: Text('Webview')),
+                    RaisedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.pusherRoute),
+                        child: Text('Pusher Example')),
                   ],
                 ),
               ),

@@ -1,8 +1,8 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivityswift/connectivityswift.dart';
 import 'package:explore_flutter/core/viewmodel/base_model.dart';
 
 class HomeViewModel extends BaseModel {
-  final Connectivity _connectivity = Connectivity();
+  final Connectivityswift _connectivity = Connectivityswift();
   ConnectivityResult connectivityStatus;
 
   Future<void> setupPage() async {
