@@ -35,31 +35,31 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.all(ConstantMeasurements.screenPadding),
                 child: Column(
                   children: [
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.animatedFooRoute),
                         child: Text('AnimatedFoo')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.tweenAnimationRoute),
                         child: Text('Tween Animation')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.toggleRoute),
                         child: Text('Toggle')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.providerExampleRoute),
                         child: Text('Provider Example')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.clipRoute),
                         child: Text('Clip')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.painterRoute),
                         child: Text('Painter')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () {
                           showActionDialog(
                             context: context,
@@ -73,15 +73,15 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         child: Text('Action Dialog')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.loadingRoute),
                         child: Text('Shimmer')),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.calendarRoute),
                         child: Text('Calendar')),
-                    RaisedButton(
+                    ElevatedButton(
                       onPressed: () => showCustomModalBottomSheet(
                           context: context,
                           headerText: 'Custom Modal Bottom Sheet',
@@ -100,16 +100,12 @@ class HomeScreen extends StatelessWidget {
                               .toList()),
                       child: Text('Modal Bottom Sheet'),
                     ),
-                    RaisedButton(
+                    ElevatedButton(
                         onPressed: () => _navigationService.navigateTo(
                             NavigationRouter.webviewRoute,
                             arguments:
                                 WebviewArgument(url: 'https://www.google.com')),
                         child: Text('Webview')),
-                    RaisedButton(
-                        onPressed: () => _navigationService
-                            .navigateTo(NavigationRouter.pusherRoute),
-                        child: Text('Pusher Example')),
                   ],
                 ),
               ),

@@ -8,7 +8,6 @@ import 'package:explore_flutter/ui/view/provider/example_screen.dart';
 import 'package:explore_flutter/ui/view/provider/to_add_minus_screen.dart';
 import 'package:explore_flutter/ui/view/provider/edit_value_screen.dart';
 import 'package:explore_flutter/ui/view/painter/painter_screen.dart';
-import 'package:explore_flutter/ui/view/pusher/pusher_example_screen.dart';
 import 'package:explore_flutter/ui/view/shimmer/loading_screen.dart';
 import 'package:explore_flutter/ui/widget/custom_webview.dart';
 import 'package:flutter/material.dart';
@@ -64,8 +63,6 @@ class NavigationRouter {
         return _pageRoute(CustomWebview(
           argument: settings.arguments,
         ));
-      case pusherRoute:
-        return _pageRoute(PusherExampleScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

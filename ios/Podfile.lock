@@ -1,53 +1,51 @@
 PODS:
   - connectivityswift (1.1.0):
     - Flutter
-  - CryptoSwift (0.15.0)
   - Flutter (1.0.0)
-  - pusher_websocket_flutter (0.1.1):
+  - google_maps_flutter (0.0.1):
     - Flutter
-    - PusherSwift (= 7.0.0)
-  - PusherSwift (7.0.0):
-    - CryptoSwift (~> 0.9)
-    - ReachabilitySwift (= 4.3.0)
-    - Starscream (~> 3.0.5)
-  - ReachabilitySwift (4.3.0)
-  - Starscream (3.0.6)
+    - GoogleMaps
+  - GoogleMaps (4.1.0):
+    - GoogleMaps/Maps (= 4.1.0)
+  - GoogleMaps/Base (4.1.0)
+  - GoogleMaps/Maps (4.1.0):
+    - GoogleMaps/Base
+  - location (0.0.1):
+    - Flutter
   - webview_flutter (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - connectivityswift (from `.symlinks/plugins/connectivityswift/ios`)
   - Flutter (from `Flutter`)
-  - pusher_websocket_flutter (from `.symlinks/plugins/pusher_websocket_flutter/ios`)
+  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - location (from `.symlinks/plugins/location/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   trunk:
-    - CryptoSwift
-    - PusherSwift
-    - ReachabilitySwift
-    - Starscream
+    - GoogleMaps
 
 EXTERNAL SOURCES:
   connectivityswift:
     :path: ".symlinks/plugins/connectivityswift/ios"
   Flutter:
     :path: Flutter
-  pusher_websocket_flutter:
-    :path: ".symlinks/plugins/pusher_websocket_flutter/ios"
+  google_maps_flutter:
+    :path: ".symlinks/plugins/google_maps_flutter/ios"
+  location:
+    :path: ".symlinks/plugins/location/ios"
   webview_flutter:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   connectivityswift: d55aa335a04fb0f8c5ee75745a558b2f14d76294
-  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  pusher_websocket_flutter: ff9a11e48f24d2297bf0d143c99119106cd2d81b
-  PusherSwift: d15d6290be0b0b57fd9ac80b03661a6ba24623ec
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  google_maps_flutter: df4e7de95264aa0a2f11aac0fc7e313acb8ffc7e
+  GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
+  location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
