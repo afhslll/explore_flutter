@@ -4,6 +4,7 @@ import 'package:explore_flutter/ui/view/clip/clip_screen.dart';
 import 'package:explore_flutter/ui/view/home/home_screen.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/animated_foo_example.dart';
 import 'package:explore_flutter/ui/view/animation/implicit/tween_example.dart';
+import 'package:explore_flutter/ui/view/live_location/live_location_screen.dart';
 import 'package:explore_flutter/ui/view/provider/example_screen.dart';
 import 'package:explore_flutter/ui/view/provider/to_add_minus_screen.dart';
 import 'package:explore_flutter/ui/view/provider/edit_value_screen.dart';
@@ -26,6 +27,7 @@ class NavigationRouter {
   static const String calendarRoute = 'calendarRoute';
   static const String webviewRoute = 'webviewRoute';
   static const String pusherRoute = 'pusherRoute';
+  static const String liveLocationRoute = 'liveLocationRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -63,6 +65,8 @@ class NavigationRouter {
         return _pageRoute(CustomWebview(
           argument: settings.arguments,
         ));
+      case liveLocationRoute:
+        return _pageRoute(LiveLocationScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
