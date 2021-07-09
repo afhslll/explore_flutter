@@ -110,6 +110,10 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.liveLocationRoute),
                         child: Text('Live Location')),
+                    ElevatedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.listRoute),
+                        child: Text('Top Glove Test')),
                   ],
                 ),
               ),
