@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                     ElevatedButton(
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.listRoute),
-                        child: Text('Top Glove Test')),
+                        child: Text('Mapping Data')),
                   ],
                 ),
               ),
