@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({Key key}) : super(key: key);
+
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  Alignment _alignment = Alignment.centerLeft;
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +21,36 @@ class MainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  Container(height: 50, width: 50, color: Colors.orange),
-                  Expanded(
-                    child: Container(
-                        height: 50,
-                        color: Colors.yellow,
-                        child: Center(child: Text('Expanded'))),
-                  ),
-                  Container(height: 50, width: 50, color: Colors.orange),
-                ],
+              Container(
+                height: 50,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _alignment = Alignment.centerLeft;
+                          });
+                        },
+                        child: Container(width: 50, color: Colors.orange)),
+                    Expanded(
+                      child: AnimatedContainer(
+                          color: _alignment == Alignment.centerLeft
+                              ? Colors.yellow
+                              : Colors.green,
+                          alignment: _alignment,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.fastOutSlowIn,
+                          child: Text('Expanded')),
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _alignment = Alignment.centerRight;
+                          });
+                        },
+                        child: Container(width: 50, color: Colors.orange)),
+                  ],
+                ),
               ),
               Container(
                 color: Colors.blue,
