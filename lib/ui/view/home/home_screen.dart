@@ -114,6 +114,10 @@ class HomeScreen extends StatelessWidget {
                         onPressed: () => _navigationService
                             .navigateTo(NavigationRouter.listRoute),
                         child: Text('Mapping Data')),
+                    ElevatedButton(
+                        onPressed: () => _navigationService
+                            .navigateTo(NavigationRouter.weeklyWidgetRoute),
+                        child: Text('Weekly Widget')),
                   ],
                 ),
               ),

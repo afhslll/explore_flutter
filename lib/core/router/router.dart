@@ -11,6 +11,7 @@ import 'package:explore_flutter/ui/view/provider/to_add_minus_screen.dart';
 import 'package:explore_flutter/ui/view/provider/edit_value_screen.dart';
 import 'package:explore_flutter/ui/view/painter/painter_screen.dart';
 import 'package:explore_flutter/ui/view/shimmer/loading_screen.dart';
+import 'package:explore_flutter/ui/view/weeklywidget/main_screen.dart';
 import 'package:explore_flutter/ui/widget/custom_webview.dart';
 import 'package:flutter/material.dart';
 
@@ -30,6 +31,7 @@ class NavigationRouter {
   static const String pusherRoute = 'pusherRoute';
   static const String liveLocationRoute = 'liveLocationRoute';
   static const String listRoute = 'listRoute';
+  static const String weeklyWidgetRoute = 'weeklyWidgetRoute';
 
   static MaterialPageRoute _pageRoute(Widget page) {
     return MaterialPageRoute(builder: (_) => page);
@@ -71,6 +73,8 @@ class NavigationRouter {
         return _pageRoute(LiveLocationScreen());
       case listRoute:
         return _pageRoute(ListScreen());
+      case weeklyWidgetRoute:
+        return _pageRoute(MainScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
