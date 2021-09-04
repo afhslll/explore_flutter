@@ -1,4 +1,5 @@
 import 'package:explore_flutter/core/constant/path_constant.dart';
+import 'package:explore_flutter/ui/view/weeklywidget/widget/fading_car.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -11,10 +12,15 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   Alignment _alignment = Alignment.centerLeft;
   double _carOpacity = 1.0;
+  final Future<String> _futureData =
+      Future<String>.delayed(const Duration(seconds: 2), () => 'Data loaded');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Weekly Widget'),
+      ),
       body: SafeArea(
         top: true,
         bottom: true,
@@ -26,6 +32,8 @@ class _MainScreenState extends State<MainScreen> {
               _animatedContainerExample(),
               _wrapExapmle(),
               _opacityExample(),
+              _futureBuilderExample(),
+              FadingCar(),
             ],
           ),
         ),
@@ -123,5 +131,32 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ],
     );
+  }
+
+  Widget _futureBuilderExample() {
+    return FutureBuilder(
+        future: _futureData,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          List<Widget> children;
+          if (snapshot.hasData) {
+            children = <Widget>[
+              Icon(Icons.done, color: Colors.green),
+              Text('${snapshot.data}'),
+            ];
+          } else if (snapshot.hasError) {
+            children = <Widget>[
+              Icon(Icons.error, color: Colors.red),
+              Text('Error 500'),
+            ];
+          } else {
+            children = <Widget>[
+              CircularProgressIndicator(),
+              Text('Loading'),
+            ];
+          }
+          return Column(
+            children: children,
+          );
+        });
   }
 }
