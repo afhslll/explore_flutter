@@ -15,20 +15,38 @@ class _FadingCarState extends State<FadingCar> with TickerProviderStateMixin {
   @override
   void initState() {
     _controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this)
-          ..repeat(reverse: true);
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _animation,
-      child: Image.asset(
-        ConstantAssetsString.carIcon,
-        height: 80,
-      ),
+    return Row(
+      children: [
+        FadeTransition(
+          opacity: _animation,
+          child: SizedBox(
+            width: 200,
+            child: Image.asset(
+              ConstantAssetsString.carIcon,
+              height: 80,
+            ),
+          ),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              if (_controller.isAnimating) {
+                _controller.stop();
+              } else {
+                _controller.repeat(reverse: true);
+              }
+            });
+          },
+          child: Text(_controller.isAnimating ? 'Stop' : 'Animate'),
+        ),
+      ],
     );
   }
 

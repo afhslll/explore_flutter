@@ -38,6 +38,13 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print('FAB pressed');
+        },
+        label: Text('FAB'),
+        icon: Icon(Icons.thumb_up),
+      ),
     );
   }
 
