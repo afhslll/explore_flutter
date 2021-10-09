@@ -1,4 +1,4 @@
-import 'package:connectivityswift/connectivityswift.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:explore_flutter/core/viewmodel/home_view_model.dart';
 import 'package:explore_flutter/ui/shared/theme_color.dart';
 import 'package:flutter/material.dart';
