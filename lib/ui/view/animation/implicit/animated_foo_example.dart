@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:explore_flutter/core/enum/animated_foo.dart';
+import 'package:flutter/material.dart';
 
 class AnimatedFooExample extends StatefulWidget {
   @override
